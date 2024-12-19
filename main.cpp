@@ -1,2 +1,6 @@
 #include<iostream>
-cout<< "MICHAS";
+using namespace std;
+
+int main(){
+cout <<"Hello World!";
+}
