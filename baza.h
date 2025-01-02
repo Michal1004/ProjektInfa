@@ -5,6 +5,6 @@ class Baza{
     string ksiazki;
     int ilosc;
   public:
-    void dodajK();
+    void dodaj_ksiazki();
     void wyswietl_ilosc();
 };
