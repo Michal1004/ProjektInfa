@@ -13,7 +13,6 @@ private:
 public:
     void dodajKsiazke(const string& tytul, const string& autor);
     void wyswietlKsiazki() const;
-
 };
 
 #endif
