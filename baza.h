@@ -1,10 +1,19 @@
-#pragma once 
+#ifndef baza_H
+#define baza_H
 
-class Baza{
-  private:
-    string ksiazki;
-    int ilosc;
-  public:
-    void dodaj_ksiazki();
-    void wyswietl_ilosc();
+#include <vector>
+#include <string>
+#include "baza.h"
+using namespace std;
+
+class Biblioteka {
+private:
+    vector<ksiazka> ksiazka;
+
+public:
+    void dodajKsiazke(const string& tytul, const string& autor);
+    void wyswietlKsiazki() const;
+
 };
+
+#endif
