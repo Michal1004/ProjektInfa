@@ -1,17 +1,15 @@
 #include "baza.h"
 #include <iostream>
-#include <ctime>
+#include<string>
+#include <vector>
 using namespace std;
 
- void dodajKsiazke(const Ksiazka& nowaKsiazka) {
+void Biblioteka::dodajKsiazke(const Ksiazka& nowaKsiazka) {
     ksiazka.push_back(nowaKsiazka);
-    cout << "Dodano książkę: " << tytul << " autora: " << autor << "\n";
+    cout << "Dodano ksiazke: " << nowaKsiazka.tytul << " autora: " << nowaKsiazka.autor << "\n";
 }
-
-void wyswietlKsiazki() const {
-    cout << "Dostępne książki w bibliotece:\n";
-    for (const auto& ksiazka : ksiazki) {
-        ksiazka.display();
+void Biblioteka::wyswietlKsiazki() const {
+    for (const auto& k : ksiazka) {
+        cout << "Tytul: " << k.tytul << ", Autor: " << k.autor << endl;
     }
 }
-
