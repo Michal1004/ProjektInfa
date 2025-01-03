@@ -19,4 +19,5 @@ public:
 
     void dodajKsiazke(const Ksiazka& nowaKsiazka);
     void wyswietlKsiazki() const;
+
 };
