@@ -3,9 +3,15 @@
 #include <string>
 using namespace std;
 
+class Ksiazka {
+public:
+    string tytul;
+    string autor;
+};
+
 class Biblioteka {
 private:
-    vector<ksiazka> ksiazka;
+    vector<Ksiazka> ksiazka;
 
 public:
     Biblioteka();
