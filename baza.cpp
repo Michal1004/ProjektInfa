@@ -9,7 +9,7 @@ void Biblioteka::dodajKsiazke(const Ksiazka& nowaKsiazka) {
     cout << "Dodano ksiazke: " << nowaKsiazka.tytul << " autora: " << nowaKsiazka.autor << "\n";
 }
 void Biblioteka::wyswietlKsiazki() const {
-    for (const auto& k : ksiazka) {
+    for (const Ksiazka& k : ksiazka) {
         cout << "Tytul: " << k.tytul << ", Autor: " << k.autor << endl;
     }
 }
