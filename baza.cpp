@@ -3,8 +3,8 @@
 #include <ctime>
 using namespace std;
 
-void dodajKsiazke(const string& tytul, const string& autor) {
-    ksiazka.push_back(Book(tytul, autor));
+ void dodajKsiazke(const Ksiazka& nowaKsiazka) {
+    ksiazka.push_back(nowaKsiazka);
     cout << "Dodano książkę: " << tytul << " autora: " << autor << "\n";
 }
 
