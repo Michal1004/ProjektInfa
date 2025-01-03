@@ -5,7 +5,7 @@ using namespace std;
 
 void dodajKsiazke(const string& tytul, const string& autor) {
     ksiazka.push_back(Book(tytul, autor));
-    cout << "Dodano książkę: " << tytul << " przez autora: " << autor << "\n";
+    cout << "Dodano książkę: " << tytul << " autora: " << autor << "\n";
 }
 
 void wyswietlKsiazki() const {
