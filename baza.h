@@ -1,9 +1,6 @@
-#ifndef baza_H
-#define baza_H
-
+#pragma once
 #include <vector>
 #include <string>
-#include "baza.h"
 using namespace std;
 
 class Biblioteka {
@@ -15,4 +12,3 @@ public:
     void wyswietlKsiazki() const;
 };
 
-#endif
