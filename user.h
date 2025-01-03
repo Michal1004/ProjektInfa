@@ -6,13 +6,18 @@ class User{
 private:
     string imie;
     string nazwisko;
+    string haslo;
+    string login;
 
 protected:
-    string haslo;
     int ilosc; //chodzi o to ile ksiazek wypozyczyl
 
 public:
-    User();
-    ~User();
-    
+    User(string Imie, string Nazwisko, string Login, string Haslo);
+    void setHaslo();
+    void setLogin();
+    void setNazwisko();
+    void setImie();
+    void pokazHistorie() const;
+    void wypozyczKsiazki()const;
 };
