@@ -17,7 +17,7 @@ public:
     Biblioteka();
     ~Biblioteka();
     
-    void dodajKsiazke(const string& tytul, const string& autor);
+ void dodajKsiazke(const Ksiazka& nowaKsiazka);
     void wyswietlKsiazki() const;
 };
 
