@@ -8,6 +8,9 @@ private:
     vector<ksiazka> ksiazka;
 
 public:
+    Biblioteka();
+    ~Biblioteka();
+    
     void dodajKsiazke(const string& tytul, const string& autor);
     void wyswietlKsiazki() const;
 };
