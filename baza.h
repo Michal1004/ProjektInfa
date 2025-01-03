@@ -16,8 +16,7 @@ private:
 public:
     Biblioteka();
     ~Biblioteka();
-    
- void dodajKsiazke(const Ksiazka& nowaKsiazka);
+
+    void dodajKsiazke(const Ksiazka& nowaKsiazka);
     void wyswietlKsiazki() const;
 };
-
