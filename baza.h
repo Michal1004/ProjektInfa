@@ -11,11 +11,10 @@ public:
 
 class Biblioteka {
 private:
-    vector<Ksiazka> ksiazka;
+    vector<Ksiazka> ksiazki;
 
 public:
     Biblioteka();
-    ~Biblioteka();
 
     void dodajKsiazke(const Ksiazka& nowaKsiazka);
     void wyswietlKsiazki() const;
