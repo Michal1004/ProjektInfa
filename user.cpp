@@ -1,5 +1,4 @@
 #include "user.h"
-#include "baza.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -12,4 +11,13 @@ void User::pokazHistorie() const {
 }
 void User::setHaslo() {
 
+}
+bool User::sprawdzDane(string wpisanyLogin, string wpisaneHaslo) const {
+    if(wpisanyLogin == login && wpisaneHaslo == haslo) {
+        return true;
+    }
+    else {
+        cout<<"Niepoprawne hasło i/lub login"<<endl;
+        return false;
+    }
 }
