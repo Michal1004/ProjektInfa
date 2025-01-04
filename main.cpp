@@ -1,10 +1,12 @@
 #include <iostream>
 #include "baza.h"
+#include "user.h"
 using namespace std;
 
 int main()
 {
     Biblioteka biblioteka;
+    User admin("Michał", "Bibliotekarz", "admin", "admin123");
 
     char akcja;
     string login, haslo, imie, nazwisko;
@@ -21,8 +23,10 @@ int main()
             cin >> login;
             cout << "Hasło: ";
             cin >> haslo;
-            cout << "Zalogowano pomyślnie!" << endl;
-            break;
+            if(admin.sprawdzDane(login, haslo)) {
+                cout << "Zalogowano pomyślnie!" << endl;
+                break;
+            }
         }
         else if (akcja == 'R' || akcja == 'r') {
             cout << "Imię: ";
