@@ -20,4 +20,5 @@ public:
     void setImie();
     void pokazHistorie() const;
     void wypozyczKsiazki()const;
+    bool sprawdzDane(string wpisanyLogin, string wpisaneHaslo) const;
 };
