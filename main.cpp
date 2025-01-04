@@ -5,6 +5,7 @@ using namespace std;
 int main()
 {
     Biblioteka biblioteka;
+
     char akcja;
     string login, haslo, imie, nazwisko;
 
@@ -39,6 +40,6 @@ int main()
             cout << "Nieprawidłowe żądanie, wprowadź jeszcze raz.\n";
         }
     } while (true);
-
+    biblioteka.wyswietlKsiazki();
     return 0;
 }
