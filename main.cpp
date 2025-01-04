@@ -1,8 +1,10 @@
 #include <iostream>
+#include "baza.h"
 using namespace std;
 
 int main()
 {
+    Biblioteka biblioteka;
     char akcja;
     string login, haslo, imie, nazwisko;
 
@@ -10,31 +12,31 @@ int main()
 
 
     do {
-        cout << "Masz konto? Zaloguj sie po kliknieciu Z" << endl;
-        cout << "Nie masz konta? Zarejestruj sie po kliknieciu R" << endl;
+        cout << "Masz konto? Zaloguj sie po kliknięciu Z" << endl;
+        cout << "Nie masz konta? Zarejestruj sie po kliknięciu R" << endl;
         cin >> akcja;
         if (akcja == 'Z' || akcja == 'z') {
             cout << "Login: ";
             cin >> login;
-            cout << "Haslo: ";
+            cout << "Hasło: ";
             cin >> haslo;
-            cout << "Zalogowano pomyslnie!" << endl;
+            cout << "Zalogowano pomyślnie!" << endl;
             break;
         }
         else if (akcja == 'R' || akcja == 'r') {
-            cout << "Imie: ";
+            cout << "Imię: ";
             cin >> imie;
             cout << "Nazwisko: ";
             cin >> nazwisko;
-            cout << "Nazwa uzytkownika/login: ";
+            cout << "Nazwa użytkownika/login: ";
             cin >> login;
-            cout << "Podaj haslo do konta: ";
+            cout << "Podaj hasło do konta: ";
             cin >> haslo;
             cout << "Konto zostało utworzone!" << endl;
             break;
         }
         else {
-            cout << "Nieprawidlowe zapytanie, wprowadz jeszcze raz.\n";
+            cout << "Nieprawidłowe żądanie, wprowadź jeszcze raz.\n";
         }
     } while (true);
 
