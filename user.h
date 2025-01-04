@@ -14,11 +14,12 @@ protected:
 
 public:
     User(string Imie, string Nazwisko, string Login, string Haslo);
-    void setHaslo();
-    void setLogin();
-    void setNazwisko();
-    void setImie();
+    void setHaslo(string Haslo);
+    void setLogin(string Login);
+    void setNazwisko(string Nazwisko);
+    void setImie(string Imie);
     void pokazHistorie() const;
     void wypozyczKsiazki()const;
     bool sprawdzDane(string wpisanyLogin, string wpisaneHaslo) const;
+    void pokazDane() const;
 };
