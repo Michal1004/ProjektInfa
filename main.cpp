@@ -7,6 +7,7 @@ int main()
 {
     Biblioteka biblioteka;
     User admin("Michał", "Bibliotekarz", "admin", "admin123");
+    User nowy("", "", "", "");
     int zadanie;
     char akcja;
     string login, haslo, imie, nazwisko;
@@ -31,13 +32,18 @@ int main()
         else if (akcja == 'R' || akcja == 'r') {
             cout << "Imię: ";
             cin >> imie;
+            nowy.setImie(imie);
             cout << "Nazwisko: ";
             cin >> nazwisko;
+            nowy.setNazwisko(nazwisko);
             cout << "Nazwa użytkownika/login: ";
             cin >> login;
+            nowy.setLogin(login);
             cout << "Podaj hasło do konta: ";
             cin >> haslo;
+            nowy.setHaslo(haslo);
             cout << "Konto zostało utworzone!" << endl;
+            nowy.pokazDane();
             break;
         }
         else {
