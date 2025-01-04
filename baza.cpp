@@ -6,12 +6,18 @@ using namespace std;
 
 void Biblioteka::dodajKsiazke(const Ksiazka& nowaKsiazka) {
     ksiazki.push_back(nowaKsiazka);
+    //cout << "Dodano ksiazke: " << nowaKsiazka.tytul << " autora: " << nowaKsiazka.autor << "\n";
 }
 void Biblioteka::wyswietlKsiazki() const {
+    if (ksiazki.empty()) {
+        cout << "Brak dostępnych książek\n";
+        return;
+    }
     cout<<"Dostępne książki"<<endl;
     for (const Ksiazka& k : ksiazki) {
         cout << "Tytuł: " << k.tytul << " Autor: " << k.autor << endl;
     }
+
 }
 Biblioteka::Biblioteka() {
     ksiazki.push_back({"Władca Pierścieni", "J.R.R. Tolkien"});
