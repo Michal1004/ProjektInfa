@@ -7,6 +7,9 @@ int main()
 {
     Biblioteka biblioteka;
     User admin("Michał", "Bibliotekarz", "admin", "admin123");
+    User Michal("Michał", "Bagiński", "Michal1004", "Nauka2025");
+    User Jakub("Jakub", "Klyszczyński", "Asnd123", "Studia#2024");
+    User Maks("Maks", "Szwejkowski", "eloMaks", "Wiedza2023!");
     User nowy("", "", "", "");
     int zadanie;
     char akcja;
