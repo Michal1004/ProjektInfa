@@ -44,7 +44,7 @@ int main()
 
                 if (login == "admin") {
                     do {
-                        cout << "1. Wyświetl dostępne książki" << endl;
+                        cout << "\n1. Wyświetl dostępne książki" << endl;
                         cout << "2. Dodaj książkę" << endl;
                         cout << "3. Historia wypożyczeń użytkowników" << endl;
                         cout << "4. Wyloguj" << endl;
