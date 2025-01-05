@@ -110,7 +110,8 @@ int main()
                 biblioteka.wyswietlKsiazki();
             }
             else if(zadanie ==2) {
-
+                biblioteka.wyswietlKsiazki();
+                cout<<"Którą książkę chcesz wypożyczyć?"<<endl;
             }
             else if(zadanie ==3) {}
             else if(zadanie ==4) {}
