@@ -6,9 +6,6 @@ using namespace std;
 User :: User(string Imie, string Nazwisko, string Login, string Haslo):
 imie(Imie), nazwisko(Nazwisko), login(Login), haslo(Haslo){}
 
-void User::pokazHistorie() const {
-
-}
 void User::setLogin(string Login) {
     login = Login;
 }
@@ -23,13 +20,7 @@ void User::setImie(string Imie) {
 }
 
 bool User::sprawdzDane(string wpisanyLogin, string wpisaneHaslo) const {
-    if(wpisanyLogin == login && wpisaneHaslo == haslo) {
-        return true;
-    }
-    else {
-        cout<<"Niepoprawne hasło i/lub login"<<endl;
-        return false;
-    }
+    return wpisanyLogin == login && wpisaneHaslo == haslo;
 }
 void User::pokazDane() const {
     cout << "Imię: " << imie << endl;
