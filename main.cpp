@@ -28,7 +28,8 @@ int main()
             cin >> login;
             cout << "Hasło: ";
             cin >> haslo;
-            if(admin.sprawdzDane(login, haslo)) {
+            if(admin.sprawdzDane(login, haslo)||Michal.sprawdzDane(login, haslo)
+                ||Jakub.sprawdzDane(login,haslo)||Maks.sprawdzDane(login, haslo)) {
                 cout << "Zalogowano pomyślnie!" << endl;
                 break;
             }
