@@ -28,10 +28,16 @@ int main()
             cin >> login;
             cout << "Hasło: ";
             cin >> haslo;
-            if(admin.sprawdzDane(login, haslo)||Michal.sprawdzDane(login, haslo)
-                ||Jakub.sprawdzDane(login,haslo)||Maks.sprawdzDane(login, haslo)) {
+            bool logowanie = admin.sprawdzDane(login, haslo) ||
+                  Michal.sprawdzDane(login, haslo) ||
+                  Jakub.sprawdzDane(login, haslo) ||
+                  Maks.sprawdzDane(login, haslo);
+
+            if (logowanie) {
                 cout << "Zalogowano pomyślnie!" << endl;
                 break;
+            } else {
+                cout << "Niepoprawne hasło i/lub login" << endl;
             }
         }
         else if (akcja == 'R' || akcja == 'r') {
