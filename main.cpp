@@ -11,6 +11,7 @@ int main()
     int zadanie;
     char akcja;
     string login, haslo, imie, nazwisko;
+    string tytul, autor;
 
     cout << "Witaj w Bibliotece!" << endl;
 
@@ -50,32 +51,41 @@ int main()
             cout << "Nieprawidłowe żądanie, wprowadź jeszcze raz.\n";
         }
     } while (true);
+    if(login == "admin") {
+        do {
+            cout<<"1. Wyświetl dostępne książki"<<endl;
+            cout<<"2. Dodaj książkę"<<endl;
+            cout<<"3. Historia wypożyczeń użytkowników"<<endl;
+            cout<<"4. Wyloguj"<<endl;
+            cout<<"Wybierz czynności: ";
+            cin>>zadanie;
 
+            cin.ignore();
+            if (zadanie ==1) {
+                biblioteka.wyswietlKsiazki();
+            }
+            else if(zadanie ==2) {
+                Ksiazka nowaKsiazka;
+                cout<<"Podaj autora: ";
+                getline(cin,autor);
+                cout<<"Podaj tytuł: ";
+                getline(cin, tytul);
+                nowaKsiazka.autor = autor;
+                nowaKsiazka.tytul = tytul;
+                biblioteka.dodajKsiazke(nowaKsiazka);
 
-    do {
-        cout<<"1. Wyświetl dostępne książki"<<endl;
-        cout<<"2. Wypożycz książkę"<<endl;
-        cout<<"3. Zwróć książkę"<<endl;
-        cout<<"4. Historia wypożyczeń"<<endl;
-        cout<<"5. Wyloguj"<<endl;
-        cout<<"Wybierz czynności: ";
-        cin>>zadanie;
-        if (zadanie ==1) {
-            biblioteka.wyswietlKsiazki();
-        }
-        else if(zadanie ==2) {
+            }
+            else if(zadanie ==3) {
 
-        }
-        else if(zadanie ==3) {}
-        else if(zadanie ==4) {}
-        else if(zadanie ==5) {
-            cout<<"Wylogowano pomyślnie";
-            break;
-        }
-        else {
-            cout<<"Nieobsługiwane żądanie. Spróbuj ponownie"<<endl;
-        }
-    } while (true);
-
+            }
+            else if(zadanie ==4) {
+                cout<<"Wylogowano pomyślnie";
+                break;
+            }
+            else {
+                cout<<"Nieobsługiwane żądanie. Spróbuj ponownie"<<endl;
+            }
+        } while (true);
+    }
     return 0;
 }
