@@ -6,7 +6,7 @@ using namespace std;
 
 void Biblioteka::dodajKsiazke(const Ksiazka& nowaKsiazka) {
     ksiazki.push_back(nowaKsiazka);
-    //cout << "Dodano ksiazke: " << nowaKsiazka.tytul << " autora: " << nowaKsiazka.autor << "\n";
+    cout << "Dodano ksiazke: " << nowaKsiazka.tytul << " autora: " << nowaKsiazka.autor << "\n";
 }
 void Biblioteka::wyswietlKsiazki() const {
     if (ksiazki.empty()) {
