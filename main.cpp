@@ -87,5 +87,32 @@ int main()
             }
         } while (true);
     }
+    else {
+        do {
+            cout<<"1. Wyświetl dostępne książki"<<endl;
+            cout<<"2. Wypożycz książkę"<<endl;
+            cout<<"3. Zwróć książkę"<<endl;
+            cout<<"4. Historia wypożyczeń"<<endl;
+            cout<<"5. Wyloguj"<<endl;
+            cout<<"Wybierz czynności: ";
+            cin>>zadanie;
+            if (zadanie ==1) {
+                biblioteka.wyswietlKsiazki();
+            }
+            else if(zadanie ==2) {
+
+            }
+            else if(zadanie ==3) {}
+            else if(zadanie ==4) {}
+            else if(zadanie ==5) {
+                cout<<"Wylogowano pomyślnie";
+                break;
+            }
+            else {
+                cout<<"Nieobsługiwane żądanie. Spróbuj ponownie"<<endl;
+            }
+        } while (true);
+
+    }
     return 0;
 }
