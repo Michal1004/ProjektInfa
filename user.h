@@ -20,5 +20,6 @@ public:
     bool sprawdzDane(string wpisanyLogin, string wpisaneHaslo) const;
     void pokazDane() const;
     void dodajDoHistorii(const string& tytul);
+    void pokazHistorie() const;
 };
 
