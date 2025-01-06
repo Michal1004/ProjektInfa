@@ -9,16 +9,55 @@ void Biblioteka::dodajKsiazke(const Ksiazka& nowaKsiazka) {
     cout << "Dodano ksiazke: " << nowaKsiazka.tytul << " autora: " << nowaKsiazka.autor << "\n";
 }
 void Biblioteka::wyswietlKsiazki() const {
-    if (ksiazki.empty()) {
-        cout << "Brak dostępnych książek\n";
-        return;
-    }
+    bool Dostepne = false;
     cout<<"Dostępne książki"<<endl;
     for (const Ksiazka& k : ksiazki) {
-        cout << "Tytuł: " << k.tytul << " Autor: " << k.autor << endl;
-    }
+        if(!k.wypozyczona) {
+            cout << "Tytuł: " << k.tytul << " Autor: " << k.autor << endl;
+            Dostepne = true;
+        }
 
+    }
 }
+
+bool Biblioteka::wypozyczKsiazke(const string& tytul, const string& login) {
+    for (auto& k : ksiazki) {
+        if (k.tytul == tytul) {
+            if (k.wypozyczona) {
+                cout << "Książka jest już wypożyczona przez: " << k.wypozyczajacy << endl;
+                return false;
+            }
+            k.wypozyczona = true;
+            k.wypozyczajacy = login;
+            return true;
+        }
+    }
+    cout << "Nie znaleziono książki o tytule: " << tytul << endl;
+    return false;
+}
+
+
+
+bool Biblioteka::zwracanieKsiazki(const string& tytul, const string& login) {
+    for (auto& k : ksiazki) {
+        if (k.tytul == tytul) {
+            if (!k.wypozyczona) {
+                cout << "Ta książka nie jest wypożyczona." << endl;
+                return false;
+            }
+            if (k.wypozyczajacy != login) {
+                cout << "Nie możesz zwrócić książki, ponieważ jest wypożyczona przez innego użytkownika." << endl;
+                return false;
+            }
+            k.wypozyczona = false;
+            k.wypozyczajacy = "";
+            return true;
+        }
+    }
+    cout << "Nie znaleziono książki o tytule: " << tytul << endl;
+    return false;
+}
+
 Biblioteka::Biblioteka() {
     ksiazki.push_back({"Władca Pierścieni", "J.R.R. Tolkien"});
     ksiazki.push_back({"1984", "George Orwell"});
@@ -42,3 +81,4 @@ Biblioteka::Biblioteka() {
     ksiazki.push_back({"Emancypantki", "Bolesław Prus"});
 
 }
+
