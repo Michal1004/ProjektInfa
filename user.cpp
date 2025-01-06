@@ -1,6 +1,7 @@
 #include "user.h"
 #include <iostream>
 #include <string>
+#include<vector>
 using namespace std;
 
 User :: User(string Imie, string Nazwisko, string Login, string Haslo):
@@ -27,3 +28,19 @@ void User::pokazDane() const {
     cout << "Nazwisko: " << nazwisko << endl;
     cout << "Login: " << login << endl;
 }
+
+void User::dodajDoHistorii(const string& tytul){
+    historiaWypozyczen.push_back(tytul);
+}
+
+void User::pokazHistorie() const{
+    if(historiaWypozyczen.empty()){
+        cout<<"Brak wypożyczonych książek w historii." <<endl;
+        return;
+    }
+    cout <<"Historia wypożyczeń: "<<endl;
+    for(const auto& tytul : historiaWypozyczen){
+        cout<<"- "<<tytul<<endl;
+    }
+}
+
