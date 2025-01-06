@@ -1,6 +1,7 @@
 #include <iostream>
 #include "baza.h"
 #include "user.h"
+
 using namespace std;
 
 int main()
@@ -18,14 +19,13 @@ int main()
     cout << "Witaj w Bibliotece!" << endl;
 
     while (true) {
-        cout << "Masz konto? Zaloguj sie po kliknięciu Z" << endl;
-        cout << "Nie masz konta? Zarejestruj sie po kliknięciu R" << endl;
-        cout << "Naciśnij Q żeby zakończyć program" << endl;
+        cout << "Masz konto? Zaloguj się po kliknięciu Z" << endl;
+        cout << "Nie masz konta? Zarejestruj się po kliknięciu R" << endl;
+        cout << "Naciśnij Q, żeby zakończyć program" << endl;
         cin >> akcja;
 
         if (akcja == 'Q' || akcja == 'q') {
-            cout << "Dziękujemy za wybranie naszej biblioteki." << endl;
-            cout<<"Do widzenia!"<<endl;
+            cout << "Dziękujemy za wybranie naszej biblioteki.\nDo widzenia!" << endl;
             break;
         }
 
@@ -37,11 +37,11 @@ int main()
             bool logowanie = admin.sprawdzDane(login, haslo) ||
                              Michal.sprawdzDane(login, haslo) ||
                              Jakub.sprawdzDane(login, haslo) ||
-                             Maks.sprawdzDane(login, haslo)||nowy.sprawdzDane(login, haslo);
+                             Maks.sprawdzDane(login, haslo) ||
+                             nowy.sprawdzDane(login, haslo);
 
             if (logowanie) {
                 cout << "Zalogowano pomyślnie!" << endl;
-
                 if (login == "admin") {
                     do {
                         cout << "\n1. Wyświetl dostępne książki" << endl;
@@ -72,36 +72,61 @@ int main()
                             cout << "Nieobsługiwane żądanie. Spróbuj ponownie" << endl;
                         }
                     } while (true);
-                } else {
+                }
+                else {
                     do {
                         cout << "\n1. Wyświetl dostępne książki" << endl;
                         cout << "2. Wypożycz książkę" << endl;
                         cout << "3. Zwróć książkę" << endl;
-                        cout << "4. Historia wypożyczeń" << endl;
+                        cout << "4. Wyświetl historię wypożyczeń" << endl;
                         cout << "5. Wyloguj" << endl;
-                        cout << "Wybierz czynności: ";
+                        cout << "Wybierz czynność: ";
                         cin >> zadanie;
+                        cin.ignore();
 
                         if (zadanie == 1) {
                             biblioteka.wyswietlKsiazki();
                         } else if (zadanie == 2) {
                             biblioteka.wyswietlKsiazki();
-                            cout << "Którą książkę chcesz wypożyczyć?" << endl;
+                            cout << "Podaj tytuł książki, którą chcesz wypożyczyć: ";
+                            getline(cin, tytul);
 
+                            if (biblioteka.wypozyczKsiazke(tytul, login)) {
+                                cout << "Wypożyczono książkę: " << tytul << endl;
+                                if (admin.sprawdzDane(login, haslo)) admin.dodajDoHistorii(tytul);
+                                if (Michal.sprawdzDane(login, haslo)) Michal.dodajDoHistorii(tytul);
+                                if (Jakub.sprawdzDane(login, haslo)) Jakub.dodajDoHistorii(tytul);
+                                if (Maks.sprawdzDane(login, haslo)) Maks.dodajDoHistorii(tytul);
+                                if (nowy.sprawdzDane(login, haslo)) nowy.dodajDoHistorii(tytul);
+                            } else {
+                                cout << "Nie udało się wypożyczyć książki. Sprawdź, czy jest dostępna." << endl;
+                            }
                         } else if (zadanie == 3) {
+                            cout << "Podaj tytuł książki, którą chcesz zwrócić: ";
+                            getline(cin, tytul);
 
+                            if (biblioteka.zwracanieKsiazki(tytul, login)) {
+                                cout << "Zwrócono książkę: " << tytul << endl;
+                            } else {
+                                cout << "Nie udało się zwrócić książki. Sprawdź, czy była wypożyczona." << endl;
+                            }
                         } else if (zadanie == 4) {
-
+                            if (admin.sprawdzDane(login, haslo)) admin.pokazHistorie();
+                            if (Michal.sprawdzDane(login, haslo)) Michal.pokazHistorie();
+                            if (Jakub.sprawdzDane(login, haslo)) Jakub.pokazHistorie();
+                            if (Maks.sprawdzDane(login, haslo)) Maks.pokazHistorie();
+                            if (nowy.sprawdzDane(login, haslo)) nowy.pokazHistorie();
                         } else if (zadanie == 5) {
-                            cout << "Wylogowano pomyślnie" << endl;
+                            cout << "Wylogowano pomyślnie." << endl;
                             break;
                         } else {
-                            cout << "Nieobsługiwane żądanie. Spróbuj ponownie" << endl;
+                            cout << "Nieprawidłowe żądanie, spróbuj ponownie." << endl;
                         }
                     } while (true);
                 }
+
             } else {
-                cout << "Niepoprawne hasło i/lub login" << endl;
+                cout << "Niepoprawny login lub hasło." << endl;
             }
         } else if (akcja == 'R' || akcja == 'r') {
             cout << "Imię: ";
@@ -119,9 +144,10 @@ int main()
             cout << "Konto zostało utworzone!" << endl;
             nowy.pokazDane();
         } else {
-            cout << "Nieprawidłowe żądanie, wprowadź jeszcze raz.\n";
+            cout << "Nieprawidłowe żądanie, spróbuj ponownie." << endl;
         }
     }
 
     return 0;
 }
+
