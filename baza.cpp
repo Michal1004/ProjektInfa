@@ -16,7 +16,6 @@ void Biblioteka::wyswietlKsiazki() const {
             cout << "Tytuł: " << k.tytul << " Autor: " << k.autor << endl;
             Dostepne = true;
         }
-
     }
 }
 
@@ -35,8 +34,6 @@ bool Biblioteka::wypozyczKsiazke(const string& tytul, const string& login) {
     cout << "Nie znaleziono książki o tytule: " << tytul << endl;
     return false;
 }
-
-
 
 bool Biblioteka::zwracanieKsiazki(const string& tytul, const string& login) {
     for (auto& k : ksiazki) {
