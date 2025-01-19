@@ -58,11 +58,13 @@ string User::getRola() const {
     return rola;
 }
 
-// Metoda wczytująca użytkowników z pliku
 void User::wczytajUzytkownikowZPliku(vector<User>& uzytkownicy, const string& nazwaPliku) {
     ifstream plik(nazwaPliku);
     if (!plik.is_open()) {
         cout << "Nie udało się otworzyć pliku z użytkownikami." << endl;
+        return;
+    if (plik.peek() == ifstream::traits_type::eof()) {
+        cout << "Plik jest pusty." << endl;
         return;
     }
 
