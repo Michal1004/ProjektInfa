@@ -57,7 +57,7 @@ bool Biblioteka::zwracanieKsiazki(const string& tytul, const string& login) {
     }
 }
 
-void Biblioteka::wczytajKsiazkiZPliku(const string& ksiazki.txt) {
+void Biblioteka::wczytajKsiazkiZPliku(const string& nazwaPliku) {
     ifstream plik(nazwaPliku);
     if (!plik.is_open()) {
         cout << "Nie udało się otworzyć pliku: " << nazwaPliku << endl;
