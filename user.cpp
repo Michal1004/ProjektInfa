@@ -44,3 +44,41 @@ void User::pokazHistorie() const{
     }
 }
 
+void User::wczytajUzytkownikowZPliku(vector<User>& uzytkownicy, const string& nazwaPliku) {
+    ifstream plik(nazwaPliku);
+    if (!plik.is_open()) {
+        cout << "Nie udało się otworzyć pliku z użytkownikami." << endl;
+        return;
+    }
+
+    string linia;
+    while (getline(plik, linia)) {
+        stringstream ss(linia);
+        string imie, nazwisko, login, haslo;
+
+        getline(ss, imie, ',');
+        getline(ss, nazwisko, ',');
+        getline(ss, login, ',');
+        getline(ss, haslo);
+
+        uzytkownicy.push_back(User(imie, nazwisko, login, haslo));
+    }
+
+    plik.close();
+}
+
+void User::zapiszUzytkownikowDoPliku(const vector<User>& uzytkownicy, const string& nazwaPliku) {
+    ofstream plik(nazwaPliku, ios::app); // otwieramy plik w trybie dopisywania
+    if (!plik.is_open()) {
+        cout << "Nie udało się otworzyć pliku do zapisu." << endl;
+        return;
+    }
+
+    for (const auto& uzytkownik : uzytkownicy) {
+        plik << uzytkownik.imie << "," << uzytkownik.nazwisko << "," 
+             << uzytkownik.login << "," << uzytkownik.haslo << "\n";
+    }
+
+    plik.close();
+}
+
