@@ -17,14 +17,14 @@ private:
      unordered_map<string, pair<string, int>> ksiazki;
 
 public:
-    Biblioteka(const string& nazwaPliku);
+    Biblioteka(const string& ksiazki.txt);
 
     void dodajKsiazke(const Ksiazka& nowaKsiazka);
     void wyswietlKsiazki() const;
     bool wypozyczKsiazke(const string& tytul, const string& login);
     bool zwracanieKsiazki(const string& tytul, const string& login);
 
-    void wczytajKsiazkiZPliku(const string& nazwaPliku);
-    void zapiszKsiazkiDoPliku(const string& nazwaPliku) const;
+    void wczytajKsiazkiZPliku(const string& ksiazki.txt);
+    void zapiszKsiazkiDoPliku(const string& ksiazki.txt) const;
 };
 
