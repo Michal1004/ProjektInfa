@@ -4,8 +4,8 @@
 #include <sstream>
 using namespace std;
 
-Biblioteka::Biblioteka(const string& nazwaPliku) {
-    wczytajKsiazkiZPliku(nazwaPliku);
+Biblioteka::Biblioteka(const string& ksiazki.txt) {
+    wczytajKsiazkiZPliku(ksiazki.txt);
 }
 
 void Biblioteka::dodajKsiazke(const Ksiazka& nowaKsiazka) {
