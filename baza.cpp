@@ -1,81 +1,112 @@
 #include "baza.h"
 #include <iostream>
-#include<string>
-#include <vector>
+#include <fstream>
+#include <sstream>
 using namespace std;
 
-void Biblioteka::dodajKsiazke(const Ksiazka& nowaKsiazka) {
-    ksiazki.push_back(nowaKsiazka);
-    cout << "Dodano ksiazke: " << nowaKsiazka.tytul << " autora: " << nowaKsiazka.autor << "\n";
+Biblioteka::Biblioteka(const string& nazwaPliku) {
+    wczytajKsiazkiZPliku(nazwaPliku);  // Wczytanie książek z pliku przy tworzeniu obiektu
 }
+
+void Biblioteka::dodajKsiazke(const Ksiazka& nowaKsiazka) {
+    string tytul = nowaKsiazka.tytul;
+    string autor = nowaKsiazka.autor;
+
+    // Jeśli książka o danym tytule już istnieje, zwiększamy liczbę egzemplarzy
+    if (ksiazki.find(tytul) != ksiazki.end()) {
+        ksiazki[tytul].second++;  // Zwiększamy liczbę egzemplarzy
+    } else {
+        ksiazki[tytul] = {autor, 1};  // Dodajemy nową książkę do mapy
+    }
+
+    // Zapisz książki do pliku po każdej dodanej książce
+    zapiszKsiazkiDoPliku("ksiazki.txt");
+}
+
 void Biblioteka::wyswietlKsiazki() const {
-    bool Dostepne = false;
-    cout<<"Dostępne książki"<<endl;
-    for (const Ksiazka& k : ksiazki) {
-        if(!k.wypozyczona) {
-            cout << "Tytuł: " << k.tytul << " Autor: " << k.autor << endl;
-            Dostepne = true;
-        }
+    if (ksiazki.empty()) {
+        cout << "Brak dostępnych książek.\n";
+        return;
+    }
+
+    cout << "Dostępne książki:\n";
+    for (const auto& par : ksiazki) {
+        const string& tytul = par.first;
+        const string& autor = par.second.first;
+        int liczbaEgzemplarzy = par.second.second;
+
+        cout << liczbaEgzemplarzy << "x \"" << tytul << "\", " << autor << endl;
     }
 }
 
 bool Biblioteka::wypozyczKsiazke(const string& tytul, const string& login) {
-    for (auto& k : ksiazki) {
-        if (k.tytul == tytul) {
-            if (k.wypozyczona) {
-                cout << "Książka jest już wypożyczona przez: " << k.wypozyczajacy << endl;
-                return false;
-            }
-            k.wypozyczona = true;
-            k.wypozyczajacy = login;
-            return true;
-        }
+    if (ksiazki.find(tytul) != ksiazki.end() && ksiazki.at(tytul).second > 0) {
+        // Zmniejszamy liczbę egzemplarzy książki
+        ksiazki[tytul].second--;
+        return true;
+    } else {
+        cout << "Książka \"" << tytul << "\" jest niedostępna.\n";
+        return false;
     }
-    cout << "Nie znaleziono książki o tytule: " << tytul << endl;
-    return false;
 }
 
 bool Biblioteka::zwracanieKsiazki(const string& tytul, const string& login) {
-    for (auto& k : ksiazki) {
-        if (k.tytul == tytul) {
-            if (!k.wypozyczona) {
-                cout << "Ta książka nie jest wypożyczona." << endl;
-                return false;
-            }
-            if (k.wypozyczajacy != login) {
-                cout << "Nie możesz zwrócić książki, ponieważ jest wypożyczona przez innego użytkownika." << endl;
-                return false;
-            }
-            k.wypozyczona = false;
-            k.wypozyczajacy = "";
-            return true;
+    if (ksiazki.find(tytul) != ksiazki.end()) {
+        // Zwiększamy liczbę egzemplarzy książki
+        ksiazki[tytul].second++;
+        return true;
+    } else {
+        cout << "Nie znaleziono książki o tytule: " << tytul << endl;
+        return false;
+    }
+}
+
+void Biblioteka::wczytajKsiazkiZPliku(const string& nazwaPliku) {
+    ifstream plik(nazwaPliku);
+    if (!plik.is_open()) {
+        cout << "Nie udało się otworzyć pliku: " << nazwaPliku << endl;
+        return;
+    }
+
+    string linia;
+    while (getline(plik, linia)) {
+        stringstream ss(linia);
+        string tytul, autor;
+
+        // Zakładamy, że tytuł i autor są rozdzieleni przecinkiem
+        getline(ss, tytul, ',');
+        getline(ss, autor);
+
+        Ksiazka ksiazka;
+        ksiazka.tytul = tytul;
+        ksiazka.autor = autor;
+
+        dodajKsiazke(ksiazka);  // Dodajemy książkę do biblioteki
+    }
+
+    plik.close();
+}
+
+void Biblioteka::zapiszKsiazkiDoPliku(const string& nazwaPliku) const {
+    ofstream plik(nazwaPliku);
+    if (!plik.is_open()) {
+        cout << "Nie udało się otworzyć pliku do zapisu: " << nazwaPliku << endl;
+        return;
+    }
+
+    // Zapisujemy książki do pliku w formacie: "tytuł,autor"
+    for (const auto& par : ksiazki) {
+        const string& tytul = par.first;
+        const string& autor = par.second.first;
+        int liczbaEgzemplarzy = par.second.second;
+
+        // Zapisujemy każdą książkę tyle razy, ile jej egzemplarzy
+        for (int i = 0; i < liczbaEgzemplarzy; i++) {
+            plik << tytul << "," << autor << "\n";
         }
     }
-    cout << "Nie znaleziono książki o tytule: " << tytul << endl;
-    return false;
+
+    plik.close();
 }
 
-Biblioteka::Biblioteka() {
-    ksiazki.push_back({"Władca Pierścieni", "J.R.R. Tolkien"});
-    ksiazki.push_back({"1984", "George Orwell"});
-    ksiazki.push_back({"Gdzie śpiewają raki?", "Delia Owens"});
-    ksiazki.push_back({"Doktor Żywago", "Borys Pasternak"});
-    ksiazki.push_back({"W pustyni i w puszczy", "Henryk Sienkiewicz"});
-    ksiazki.push_back({"Romeo i Julia", "William Shakespeare"});
-    ksiazki.push_back({"Zbrodnia i kara", "Fiodor Dostojewski"});
-    ksiazki.push_back({"Bracia Karamazow", "Fiodor Dostojewski"});
-    ksiazki.push_back({"Anna Karenina", "Lew Tołstoj"});
-    ksiazki.push_back({"Wojna i pokój", "Lew Tołstoj"});
-    ksiazki.push_back({"Folwark Zwierzęcy", "George Orwell"});
-    ksiazki.push_back({"Droga na molo w Wigan", "George Orwell"});
-    ksiazki.push_back({"Przeminęło z wiatrem", "Margaret Mitchell"});
-    ksiazki.push_back({"Duma i uprzedzenie", "Jane Austen"});
-    ksiazki.push_back({"Pan Tadeusz", "Adam Mickiewicz"});
-    ksiazki.push_back({"Sklepy cynamonowe", "Bruno Schulz"});
-    ksiazki.push_back({"Kordian", "Juliusz Słowacki"});
-    ksiazki.push_back({"Boska komedia", "Dante Alighieri"});
-    ksiazki.push_back({"Lalka", "Bolesław Prus"});
-    ksiazki.push_back({"Emancypantki", "Bolesław Prus"});
-
-}
 
