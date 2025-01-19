@@ -1,1 +1,4 @@
-
+Michał,Bibliotekarz,admin,admin123,admin
+Michał,Bagiński,Michal1004,$Nauka2025,user
+Jakub,Klyszczynski,Asnd123,Studia#2024,user
+Maks,Szwejkowski,eloMaks,Wiedza2023!,user
