@@ -75,6 +75,8 @@ void Biblioteka::wczytajKsiazkiZPliku(const string& nazwaPliku) {
         Ksiazka ksiazka;
         ksiazka.tytul = tytul;
         ksiazka.autor = autor;
+        ksiazka.wypozyczona = false;
+        ksiazki[ksiazka.tytul] = {ksiazka.autor, 1};
 
         dodajKsiazke(ksiazka);
     }
@@ -82,8 +84,8 @@ void Biblioteka::wczytajKsiazkiZPliku(const string& nazwaPliku) {
     plik.close();
 }
 
-void Biblioteka::zapiszKsiazkiDoPliku(const string& ksiazki.txt) const {
-    ofstream plik(ksiazki.txt);
+void Biblioteka::zapiszKsiazkiDoPliku(const string& nazwaPliku) const {
+    ofstream plik(nazwaPliku);
     if (!plik.is_open()) {
         cout << "Nie udało się otworzyć pliku do zapisu: " << ksiazki.txt << endl;
         return;
