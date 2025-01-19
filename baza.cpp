@@ -5,21 +5,19 @@
 using namespace std;
 
 Biblioteka::Biblioteka(const string& nazwaPliku) {
-    wczytajKsiazkiZPliku(nazwaPliku);  // Wczytanie książek z pliku przy tworzeniu obiektu
+    wczytajKsiazkiZPliku(nazwaPliku);
 }
 
 void Biblioteka::dodajKsiazke(const Ksiazka& nowaKsiazka) {
     string tytul = nowaKsiazka.tytul;
     string autor = nowaKsiazka.autor;
 
-    // Jeśli książka o danym tytule już istnieje, zwiększamy liczbę egzemplarzy
     if (ksiazki.find(tytul) != ksiazki.end()) {
-        ksiazki[tytul].second++;  // Zwiększamy liczbę egzemplarzy
+        ksiazki[tytul].second++;
     } else {
-        ksiazki[tytul] = {autor, 1};  // Dodajemy nową książkę do mapy
+        ksiazki[tytul] = {autor, 1};
     }
 
-    // Zapisz książki do pliku po każdej dodanej książce
     zapiszKsiazkiDoPliku("ksiazki.txt");
 }
 
@@ -41,7 +39,6 @@ void Biblioteka::wyswietlKsiazki() const {
 
 bool Biblioteka::wypozyczKsiazke(const string& tytul, const string& login) {
     if (ksiazki.find(tytul) != ksiazki.end() && ksiazki.at(tytul).second > 0) {
-        // Zmniejszamy liczbę egzemplarzy książki
         ksiazki[tytul].second--;
         return true;
     } else {
@@ -52,7 +49,6 @@ bool Biblioteka::wypozyczKsiazke(const string& tytul, const string& login) {
 
 bool Biblioteka::zwracanieKsiazki(const string& tytul, const string& login) {
     if (ksiazki.find(tytul) != ksiazki.end()) {
-        // Zwiększamy liczbę egzemplarzy książki
         ksiazki[tytul].second++;
         return true;
     } else {
@@ -81,7 +77,7 @@ void Biblioteka::wczytajKsiazkiZPliku(const string& nazwaPliku) {
         ksiazka.tytul = tytul;
         ksiazka.autor = autor;
 
-        dodajKsiazke(ksiazka);  // Dodajemy książkę do biblioteki
+        dodajKsiazke(ksiazka);
     }
 
     plik.close();
@@ -94,13 +90,11 @@ void Biblioteka::zapiszKsiazkiDoPliku(const string& nazwaPliku) const {
         return;
     }
 
-    // Zapisujemy książki do pliku w formacie: "tytuł,autor"
     for (const auto& par : ksiazki) {
         const string& tytul = par.first;
         const string& autor = par.second.first;
         int liczbaEgzemplarzy = par.second.second;
 
-        // Zapisujemy każdą książkę tyle razy, ile jej egzemplarzy
         for (int i = 0; i < liczbaEgzemplarzy; i++) {
             plik << tytul << "," << autor << "\n";
         }
