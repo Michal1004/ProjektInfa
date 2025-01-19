@@ -57,7 +57,7 @@ bool Biblioteka::zwracanieKsiazki(const string& tytul, const string& login) {
     }
 }
 
-void Biblioteka::wczytajKsiazkiZPliku(const string& nazwaPliku) {
+void Biblioteka::wczytajKsiazkiZPliku(const string& ksiazki.txt) {
     ifstream plik(nazwaPliku);
     if (!plik.is_open()) {
         cout << "Nie udało się otworzyć pliku: " << nazwaPliku << endl;
@@ -69,7 +69,6 @@ void Biblioteka::wczytajKsiazkiZPliku(const string& nazwaPliku) {
         stringstream ss(linia);
         string tytul, autor;
 
-        // Zakładamy, że tytuł i autor są rozdzieleni przecinkiem
         getline(ss, tytul, ',');
         getline(ss, autor);
 
@@ -83,10 +82,10 @@ void Biblioteka::wczytajKsiazkiZPliku(const string& nazwaPliku) {
     plik.close();
 }
 
-void Biblioteka::zapiszKsiazkiDoPliku(const string& nazwaPliku) const {
-    ofstream plik(nazwaPliku);
+void Biblioteka::zapiszKsiazkiDoPliku(const string& ksiazki.txt) const {
+    ofstream plik(ksiazki.txt);
     if (!plik.is_open()) {
-        cout << "Nie udało się otworzyć pliku do zapisu: " << nazwaPliku << endl;
+        cout << "Nie udało się otworzyć pliku do zapisu: " << ksiazki.txt << endl;
         return;
     }
 
