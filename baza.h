@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <unordered_map>
 using namespace std;
 
 class Ksiazka {
@@ -13,7 +14,7 @@ public:
 
 class Biblioteka {
 private:
-    vector<Ksiazka> ksiazki;
+     unordered_map<string, pair<string, int>> ksiazki;
 
 public:
     Biblioteka();
