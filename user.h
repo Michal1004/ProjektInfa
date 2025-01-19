@@ -21,5 +21,8 @@ public:
     void pokazDane() const;
     void dodajDoHistorii(const string& tytul);
     void pokazHistorie() const;
+
+    static void wczytajUzytkownikowZPliku(vector<User>& uzytkownicy, const string& nazwaPliku);
+    static void zapiszUzytkownikowDoPliku(const vector<User>& uzytkownicy, const string& nazwaPliku);
 };
 
