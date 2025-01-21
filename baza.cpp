@@ -40,6 +40,8 @@ void Biblioteka::wyswietlKsiazki() const {
 bool Biblioteka::wypozyczKsiazke(const string& tytul, const string& login) {
     if (ksiazki.find(tytul) != ksiazki.end() && ksiazki.at(tytul).second > 0) {
         ksiazki[tytul].second--;
+        historiaWypozyczen[login].push_back(tytul);
+        zapiszKsiazkiDoPliku("ksiazki.txt");
         return true;
     } else {
         cout << "Książka \"" << tytul << "\" jest niedostępna.\n";
@@ -50,6 +52,12 @@ bool Biblioteka::wypozyczKsiazke(const string& tytul, const string& login) {
 bool Biblioteka::zwracanieKsiazki(const string& tytul, const string& login) {
     if (ksiazki.find(tytul) != ksiazki.end()) {
         ksiazki[tytul].second++;
+        auto& historia = historiaWypozyczen[login];
+        auto it = find(historia.begin(), historia.end(), tytul);
+        if (it != historia.end()) {
+            historia.erase(it);
+        }
+        zapiszKsiazkiDoPliku("ksiazki.txt");
         return true;
     } else {
         cout << "Nie znaleziono książki o tytule: " << tytul << endl;
@@ -72,13 +80,7 @@ void Biblioteka::wczytajKsiazkiZPliku(const string& nazwaPliku) {
         getline(ss, tytul, ',');
         getline(ss, autor);
 
-        Ksiazka ksiazka;
-        ksiazka.tytul = tytul;
-        ksiazka.autor = autor;
-        ksiazka.wypozyczona = false;
-        ksiazki[ksiazka.tytul] = {ksiazka.autor, 1};
-
-        dodajKsiazke(ksiazka);
+        ksiazki[tytul] = {autor, 1};
     }
 
     plik.close();
@@ -104,4 +106,14 @@ void Biblioteka::zapiszKsiazkiDoPliku(const string& nazwaPliku) const {
     plik.close();
 }
 
-
+void Biblioteka::wyswietlHistorieWypozyczen(const string& login) const {
+    auto it = historiaWypozyczen.find(login);
+    if (it != historiaWypozyczen.end()) {
+        cout << "Historia wypożyczeń dla " << login << ":\n";
+        for (const auto& tytul : it->second) {
+            cout << "- " << tytul << "\n";
+        }
+    } else {
+        cout << "Brak historii wypożyczeń dla " << login << ".\n";
+    }
+}
