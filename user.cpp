@@ -12,8 +12,8 @@ void User::setLogin(string Login) {
     login = Login;
 }
 
-void User::setHaslo(string Haslo) {
-    haslo = Haslo;
+void User::setHaslo(string Haslo) 
+    { haslo = BCrypt::generateHash(Haslo);
 }
 
 void User::setNazwisko(string Nazwisko) {
@@ -85,9 +85,8 @@ void User::wczytajUzytkownikowZPliku(vector<User>& uzytkownicy, const string& na
     plik.close();
 }
 
-// Metoda zapisująca użytkowników do pliku
 void User::zapiszUzytkownikowDoPliku(const vector<User>& uzytkownicy, const string& nazwaPliku) {
-    ofstream plik(nazwaPliku, ios::app); // Otwieramy plik w trybie dopisywania
+    ofstream plik(nazwaPliku, ios::app);
     if (!plik.is_open()) {
         cout << "Nie udało się otworzyć pliku do zapisu." << endl;
         return;
