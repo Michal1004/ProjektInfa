@@ -5,14 +5,77 @@
 
 using namespace std;
 
+void logowanieAdmin(Biblioteka& biblioteka) {
+    int zadanie;
+    string autor, tytul;
+    do {
+        cout << "\n1. Wyświetl dostępne książki" << endl;
+        cout << "2. Dodaj książkę" << endl;
+        cout << "3. Historia wypożyczeń użytkowników" << endl;
+        cout << "4. Wyloguj" << endl;
+        cout << "Wybierz czynności: ";
+        cin >> zadanie;
+        cin.ignore();
+
+        if (zadanie == 1) {
+            biblioteka.wyswietlKsiazki();
+        } else if (zadanie == 2) {
+            Ksiazka nowaKsiazka;
+            cout << "Podaj autora: ";
+            getline(cin, autor);
+            cout << "Podaj tytuł: ";
+            getline(cin, tytul);
+            nowaKsiazka.autor = autor;
+            nowaKsiazka.tytul = tytul;
+            biblioteka.dodajKsiazke(nowaKsiazka);
+        } else if (zadanie == 3) {
+
+        } else if (zadanie == 4) {
+            cout << "Wylogowano pomyślnie" << endl;
+            break;
+        } else {
+            cout << "Nieobsługiwane żądanie. Spróbuj ponownie" << endl;
+        }
+    } while (true);
+}
+
+void logowanieUzytkownik(Biblioteka& biblioteka) {
+    int zadanie;
+    do {
+        cout << "\n1. Wyświetl dostępne książki" << endl;
+        cout << "2. Wypożycz książkę" << endl;
+        cout << "3. Zwróć książkę" << endl;
+        cout << "4. Historia wypożyczeń" << endl;
+        cout << "5. Wyloguj" << endl;
+        cout << "Wybierz czynności: ";
+        cin >> zadanie;
+
+        if (zadanie == 1) {
+            biblioteka.wyswietlKsiazki();
+        } else if (zadanie == 2) {
+            biblioteka.wyswietlKsiazki();
+            cout << "Którą książkę chcesz wypożyczyć?" << endl;
+
+        } else if (zadanie == 3) {
+
+        } else if (zadanie == 4) {
+
+        } else if (zadanie == 5) {
+            cout << "Wylogowano pomyślnie" << endl;
+            break;
+        } else {
+            cout << "Nieobsługiwane żądanie. Spróbuj ponownie" << endl;
+        }
+    } while (true);
+}
+
 int main() {
     vector<User> uzytkownicy;
     string nazwaPlikuUzytkownikow = "uzytkownicy.txt";
 
-    User::wczytajUzytkownikowZPliku(uzytkownicy, nazwaPlikuUzytkownicy);
+    User::wczytajUzytkownikowZPliku(uzytkownicy, nazwaPlikuUzytkownikow);
 
-    string login, haslo, imie, nazwisko, tytul, autor;
-    int zadanie;
+    string login, haslo, imie, nazwisko;
     char akcja;
 
     cout << "Witaj w Bibliotece!" << endl;
@@ -39,75 +102,16 @@ int main() {
                 if (uzytkownik.sprawdzDane(login, haslo)) {
                     logowanie = true;
                     cout << "Zalogowano pomyślnie!" << endl;
-                   
                     if (uzytkownik.getRola() == "admin") {
                         cout << "Masz uprawnienia administratora." << endl;
+                        logowanieAdmin(biblioteka);
+                    } else {
+                        logowanieUzytkownik(biblioteka);
                     }
                     break;
                 }
             }
-            if (logowanie) {
-                cout << "Zalogowano pomyślnie!" << endl;
-
-                if (login == "admin") {
-                    do {
-                        cout << "\n1. Wyświetl dostępne książki" << endl;
-                        cout << "2. Dodaj książkę" << endl;
-                        cout << "3. Historia wypożyczeń użytkowników" << endl;
-                        cout << "4. Wyloguj" << endl;
-                        cout << "Wybierz czynności: ";
-                        cin >> zadanie;
-                        cin.ignore();
-
-                        if (zadanie == 1) {
-                            biblioteka.wyswietlKsiazki();
-                        } else if (zadanie == 2) {
-                            Ksiazka nowaKsiazka;
-                            cout << "Podaj autora: ";
-                            getline(cin, autor);
-                            cout << "Podaj tytuł: ";
-                            getline(cin, tytul);
-                            nowaKsiazka.autor = autor;
-                            nowaKsiazka.tytul = tytul;
-                            biblioteka.dodajKsiazke(nowaKsiazka);
-                        } else if (zadanie == 3) {
-
-                        } else if (zadanie == 4) {
-                            cout << "Wylogowano pomyślnie" << endl;
-                            break;
-                        } else {
-                            cout << "Nieobsługiwane żądanie. Spróbuj ponownie" << endl;
-                        }
-                    } while (true);
-                } else {
-                    do {
-                        cout << "\n1. Wyświetl dostępne książki" << endl;
-                        cout << "2. Wypożycz książkę" << endl;
-                        cout << "3. Zwróć książkę" << endl;
-                        cout << "4. Historia wypożyczeń" << endl;
-                        cout << "5. Wyloguj" << endl;
-                        cout << "Wybierz czynności: ";
-                        cin >> zadanie;
-
-                        if (zadanie == 1) {
-                            biblioteka.wyswietlKsiazki();
-                        } else if (zadanie == 2) {
-                            biblioteka.wyswietlKsiazki();
-                            cout << "Którą książkę chcesz wypożyczyć?" << endl;
-
-                        } else if (zadanie == 3) {
-
-                        } else if (zadanie == 4) {
-
-                        } else if (zadanie == 5) {
-                            cout << "Wylogowano pomyślnie" << endl;
-                            break;
-                        } else {
-                            cout << "Nieobsługiwane żądanie. Spróbuj ponownie" << endl;
-                        }
-                    } while (true);
-                }
-            else if (!logowanie) {
+            if (!logowanie) {
                 cout << "Niepoprawny login lub hasło." << endl;
             }
         } else if (akcja == 'R' || akcja == 'r') {
@@ -126,7 +130,7 @@ int main() {
             string rola = (admin == 'T' || admin == 't') ? "admin" : "user";
             uzytkownicy.push_back(User(imie, nazwisko, login, haslo, rola));
 
-            User::zapiszUzytkownikowDoPliku(uzytkownicy, nazwaPlikuUzytkownicy);
+            User::zapiszUzytkownikowDoPliku(uzytkownicy, nazwaPlikuUzytkownikow);
             cout << "Konto zostało utworzone!" << endl;
         } else {
             cout << "Nieprawidłowa opcja!" << endl;
