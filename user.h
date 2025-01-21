@@ -14,7 +14,7 @@ private:
     vector<string> historiaWypozyczen;
 
 public:
-    User(string Imie, string Nazwisko, string Login, string Haslo);
+    User(string Imie, string Nazwisko, string Login, string Haslo, string Rola);
     void setHaslo(string Haslo);
     void setLogin(string Login);
     void setNazwisko(string Nazwisko);
@@ -31,4 +31,3 @@ public:
     static void wczytajUzytkownikowZPliku(vector<User>& uzytkownicy, const string& nazwaPliku);
     static void zapiszUzytkownikowDoPliku(const vector<User>& uzytkownicy, const string& nazwaPliku);
 };
-
