@@ -14,17 +14,18 @@ public:
 
 class Biblioteka {
 private:
-     unordered_map<string, pair<string, int>> ksiazki;
+    unordered_map<string, pair<string, int>> ksiazki;
+    unordered_map<string, vector<string>> historiaWypozyczen;
 
 public:
-    Biblioteka(const string& ksiazki.txt);
+    Biblioteka(const string& nazwaPliku);
 
     void dodajKsiazke(const Ksiazka& nowaKsiazka);
     void wyswietlKsiazki() const;
     bool wypozyczKsiazke(const string& tytul, const string& login);
     bool zwracanieKsiazki(const string& tytul, const string& login);
+    void wyswietlHistorieWypozyczen(const string& login) const;
 
-    void wczytajKsiazkiZPliku(const string& ksiazki.txt);
-    void zapiszKsiazkiDoPliku(const string& ksiazki.txt) const;
+    void wczytajKsiazkiZPliku(const string& nazwaPliku);
+    void zapiszKsiazkiDoPliku(const string& nazwaPliku) const;
 };
-
