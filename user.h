@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "bcrypt/BCrypt.hpp"
+#include "BCrypt.hpp"
 using namespace std;
 
 class User {
