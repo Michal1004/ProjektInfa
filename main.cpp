@@ -11,7 +11,7 @@ int main() {
     vector<User> uzytkownicy;
     string nazwaPlikuUzytkownikow = "uzytkownicy.txt";
 
-    //User::wczytajUzytkownikowZPliku(uzytkownicy, nazwaPlikuUzytkownikow);
+    User::wczytajUzytkownikowZPliku(uzytkownicy, nazwaPlikuUzytkownikow);
 
     string login, haslo, imie, nazwisko;
     string autor, tytul;
@@ -45,7 +45,6 @@ int main() {
                     if (uzytkownik.getRola() == "admin") {
                         cout << "Masz uprawnienia administratora." << endl;
 
-                      // string autor, tytul;
                       do {
                         cout << "\n1. Wyświetl dostępne książki" << endl;
                         cout << "2. Dodaj książkę" << endl;
