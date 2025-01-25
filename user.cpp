@@ -3,7 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include "bcrypt/BCrypt.hpp"
+#include "BCrypt.hpp"
 
 using namespace std;
 
@@ -38,7 +38,7 @@ void User::pokazDane() const {
     cout << "Imię: " << imie << endl;
     cout << "Nazwisko: " << nazwisko << endl;
     cout << "Login: " << login << endl;
-    cout << "Rola: " << rola << endl; 
+    cout << "Rola: " << rola << endl;
 }
 
 void User::dodajDoHistorii(const string& tytul) {
