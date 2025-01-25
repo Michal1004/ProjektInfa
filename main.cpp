@@ -13,7 +13,7 @@ int main() {
 
     User::wczytajUzytkownikowZPliku(uzytkownicy, nazwaPlikuUzytkownikow);
 
-    string login, haslo, imie, nazwisko;
+    string login, haslo, imie, nazwisko, rola;
     char akcja;
 
     cout << "Witaj w Bibliotece!" << endl;
