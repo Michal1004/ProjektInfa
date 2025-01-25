@@ -14,6 +14,7 @@ int main() {
     //User::wczytajUzytkownikowZPliku(uzytkownicy, nazwaPlikuUzytkownikow);
 
     string login, haslo, imie, nazwisko;
+    string autor, tytul;
     int zadanie;
     char akcja;
 
@@ -37,14 +38,14 @@ int main() {
             cin >> haslo;
 
             bool logowanie = false;
-            for (const auto& uzytkownik : uzytkownicy) {
+            for (auto& uzytkownik : uzytkownicy) {
                 if (uzytkownik.sprawdzDane(login, haslo)) {
                     logowanie = true;
                     cout << "Zalogowano pomyślnie!" << endl;
                     if (uzytkownik.getRola() == "admin") {
                         cout << "Masz uprawnienia administratora." << endl;
 
-                       string autor, tytul;
+                      // string autor, tytul;
                       do {
                         cout << "\n1. Wyświetl dostępne książki" << endl;
                         cout << "2. Dodaj książkę" << endl;
@@ -86,9 +87,17 @@ int main() {
                             biblioteka.wyswietlKsiazki();
                         } else if (zadanie == 2) {
                             biblioteka.wyswietlKsiazki();
-                            cout << "Którą książkę chcesz wypożyczyć?" << endl;
 
-                        } else if (zadanie == 3) {
+                            cout << "Podaj tytuł książki, którą chcesz wypożyczyć: ";
+                            getline(cin, tytul);
+
+                            if (biblioteka.wypozyczKsiazke(tytul, login)) {
+                                cout << "Wypożyczono książkę: " << tytul << endl;
+                                uzytkownik.dodajDoHistorii(tytul);
+                            } else {
+                                cout << "Nie udało się wypożyczyć książki. Sprawdź, czy jest dostępna." << endl;
+                            }
+                        }  else if (zadanie == 3) {
                             cout << "Podaj tytuł książki, którą chcesz zwrócić: ";
                             getline(cin, tytul);
                             if (biblioteka.zwracanieKsiazki(tytul, login)) {
@@ -97,11 +106,8 @@ int main() {
                                 cout << "Nie udało się zwrócić książki. Sprawdź, czy była wypożyczona." << endl;
                             }
                         } else if (zadanie == 4) {
-                            if (admin.sprawdzDane(login, haslo)) admin.pokazHistorie();
-                            if (Michal.sprawdzDane(login, haslo)) Michal.pokazHistorie();
-                            if (Jakub.sprawdzDane(login, haslo)) Jakub.pokazHistorie();
-                            if (Maks.sprawdzDane(login, haslo)) Maks.pokazHistorie();
-                            if (nowy.sprawdzDane(login, haslo)) nowy.pokazHistorie();
+                            uzytkownik.pokazHistorie();
+
 
                         } else if (zadanie == 5) {
                             cout << "Wylogowano pomyślnie" << endl;
