@@ -3,15 +3,14 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include "BCrypt.hpp"
 
 using namespace std;
 
 User::User(string Imie, string Nazwisko, string Login, string Haslo, string Rola)
-    : imie(Imie), nazwisko(Nazwisko), login(Login), haslo(BCrypt::generateHash(Haslo)), rola(Rola) {}
+    : imie(Imie), nazwisko(Nazwisko), login(Login), haslo(Haslo), rola(Rola) {}
 
 void User::setHaslo(string Haslo) {
-    haslo = BCrypt::generateHash(Haslo);
+    haslo = Haslo;
 }
 
 void User::setLogin(string Login) {
@@ -31,8 +30,9 @@ void User::setRola(string Rola) {
 }
 
 bool User::sprawdzDane(string wpisanyLogin, string wpisaneHaslo) const {
-    return wpisanyLogin == login && BCrypt::validatePassword(wpisaneHaslo, haslo);
-}
+    if(wpisanyLogin == login && wpisaneHaslo ==haslo)return true;
+    }
+
 
 void User::pokazDane() const {
     cout << "Imię: " << imie << endl;
@@ -41,7 +41,7 @@ void User::pokazDane() const {
     cout << "Rola: " << rola << endl;
 }
 
-void User::dodajDoHistorii(const string& tytul) {
+void User::dodajDoHistorii(string& tytul) {
     historiaWypozyczen.push_back(tytul);
 }
 
