@@ -1,6 +1,10 @@
 #pragma once
 #include <string>
 #include <vector>
+
+#include <functional>
+#include <sstream>
+
 using namespace std;
 
 class User {
@@ -29,4 +33,6 @@ public:
 
     static void wczytajUzytkownikowZPliku(vector<User>& uzytkownicy, const string& nazwaPliku);
     static void zapiszUzytkownikowDoPliku(const vector<User>& uzytkownicy, const string& nazwaPliku);
+
+    static string hashHaslo(const string& haslo);
 };
