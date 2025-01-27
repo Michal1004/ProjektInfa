@@ -7,10 +7,21 @@
 using namespace std;
 
 User::User(string Imie, string Nazwisko, string Login, string Haslo, string Rola)
-    : imie(Imie), nazwisko(Nazwisko), login(Login), haslo(Haslo), rola(Rola) {}
+    : imie(Imie), nazwisko(Nazwisko), login(Login), haslo(Haslo), rola(Rola) {
+        this -> haslo=hashHaslo(Haslo);
+    }
+
+string User::hashHaslo(const string& haslo){
+    hash<string> hashujacy;
+    size_t zahasowane = hashujacy(haslo);
+
+    stringstream ss;
+    ss << hex << zahasowane;
+    return ss.str();
+}
 
 void User::setHaslo(string Haslo) {
-    haslo = Haslo;
+    this ->haslo = hashHaslo(Haslo);
 }
 
 void User::setLogin(string Login) {
@@ -30,9 +41,8 @@ void User::setRola(string Rola) {
 }
 
 bool User::sprawdzDane(string wpisanyLogin, string wpisaneHaslo) const {
-    return wpisanyLogin == login && wpisaneHaslo == haslo;
+    return wpisanyLogin == this->login && hashHaslo(wpisaneHaslo) == this->haslo;
 }
-
 
 
 void User::pokazDane() const {
@@ -60,7 +70,6 @@ void User::pokazHistorie() const {
 string User::getRola() const {
     return rola;
 }
-
 void User::wczytajUzytkownikowZPliku(vector<User>& uzytkownicy, const string& nazwaPliku) {
     ifstream plik(nazwaPliku);
     if (!plik.is_open()) {
@@ -90,7 +99,7 @@ void User::wczytajUzytkownikowZPliku(vector<User>& uzytkownicy, const string& na
 }
 
 void User::zapiszUzytkownikowDoPliku(const vector<User>& uzytkownicy, const string& nazwaPliku) {
-    ofstream plik(nazwaPliku, ios::out);
+    ofstream plik(nazwaPliku, ios::app);
     if (!plik.is_open()) {
         cout << "Nie udało się otworzyć pliku do zapisu." << endl;
         return;
