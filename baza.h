@@ -19,7 +19,7 @@ private:
 
 public:
     Biblioteka(const string& nazwaPliku);
-    Biblioteka();
+    Biblioteka(){}
 
     void dodajKsiazke(const Ksiazka& nowaKsiazka);
     void wyswietlKsiazki() const;
