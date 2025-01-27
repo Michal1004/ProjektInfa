@@ -92,19 +92,17 @@ void Biblioteka::wczytajKsiazkiZPliku(const string& nazwaPliku) {
 void Biblioteka::zapiszKsiazkiDoPliku(const string& nazwaPliku) const {
     ofstream plik(nazwaPliku);
     if (!plik.is_open()) {
-        cout << "Nie udało się otworzyć pliku do zapisu." << endl;
+        cout << "Nie udało się otworzyć pliku: " << nazwaPliku << endl;
         return;
     }
+
     for (const auto& par : ksiazki) {
-        const string& tytul = par.first;
-        const string& autor = par.second.first;
-        int liczbaEgzemplarzy = par.second.second;
-        for (int i = 0; i < liczbaEgzemplarzy; i++) {
-            plik << tytul << "," << autor << "\n";
-        }
+        plik << par.first << "," << par.second.first << "," << par.second.second << "\n";
     }
+
     plik.close();
 }
+
 
 
 void Biblioteka::wyswietlHistorieWypozyczen(const string& login) const {
