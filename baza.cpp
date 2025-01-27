@@ -8,6 +8,7 @@ Biblioteka::Biblioteka(const string& nazwaPliku) {
     wczytajKsiazkiZPliku(nazwaPliku);
 }
 
+
 void Biblioteka::dodajKsiazke(const Ksiazka& nowaKsiazka) {
     string tytul = nowaKsiazka.tytul;
     string autor = nowaKsiazka.autor;
@@ -52,14 +53,15 @@ bool Biblioteka::wypozyczKsiazke(const string& tytul, const string& login) {
 bool Biblioteka::zwracanieKsiazki(const string& tytul, const string& login) {
     if (ksiazki.find(tytul) != ksiazki.end()) {
         ksiazki[tytul].second++;
-        auto& historia = historiaWypozyczen[login];
-        auto it = find(historia.begin(), historia.end(), tytul);
-        if (it != historia.end()) {
-            historia.erase(it);
-        }
+        //auto& historia = historiaWypozyczen[login];
+       // auto it = find(historiaWypozyczen.begin(), historiaWypozyczen.end(), tytul);
+        //if (it != historiaWypozyczen.end()) {
+         //   historiaWypozyczen.erase(it);
+        //}
         zapiszKsiazkiDoPliku("ksiazki.txt");
         return true;
-    } else {
+    } 
+    else {
         cout << "Nie znaleziono książki o tytule: " << tytul << endl;
         return false;
     }
@@ -87,12 +89,7 @@ void Biblioteka::wczytajKsiazkiZPliku(const string& nazwaPliku) {
 }
 
 void Biblioteka::zapiszKsiazkiDoPliku(const string& nazwaPliku) const {
-    ofstream plik(nazwaPliku);
-    if (!plik.is_open()) {
-        cout << "Nie udało się otworzyć pliku do zapisu: " << ksiazki.txt << endl;
-        return;
-    }
-
+    ofstream plik("ksiazki.txt");
     for (const auto& par : ksiazki) {
         const string& tytul = par.first;
         const string& autor = par.second.first;
