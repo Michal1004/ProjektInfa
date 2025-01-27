@@ -1,35 +1,35 @@
-"Harry Potter i Kamień Filozoficzny", J.K. Rowling
-"Wielki Gatsby", F. Scott Fitzgerald
-"Zbrodnia i kara", Fiodor Dostojewski
-"1984", George Orwell
-"1984", George Orwell
-"1984", George Orwell
-"Przeminęło z wiatrem", Margaret Mitchell
-"Duma i uprzedzenie", Jane Austen
-"Duma i uprzedzenie", Jane Austen
-"Sto lat samotności", Gabriel García Márquez
-"Mistrz i Małgorzata", Michaił Bułhakow
-"Władca Pierścieni: Drużyna Pierścienia", J.R.R. Tolkien
-"Władca Pierścieni: Drużyna Pierścienia", J.R.R. Tolkien
-"Władca Pierścieni: Drużyna Pierścienia", J.R.R. Tolkien
-"Władca Pierścieni: Drużyna Pierścienia", J.R.R. Tolkien
-"Władca Pierścieni: Drużyna Pierścienia", J.R.R. Tolkien
-"Władca Pierścieni: Drużyna Pierścienia", J.R.R. Tolkien
-"Folwark zwierzęcy", George Orwell
-"Wielka Czwórka", Agatha Christie
-"Wielka Czwórka", Agatha Christie
-"Wielka Czwórka", Agatha Christie
-"Wielka Czwórka", Agatha Christie
-"Lalka", Bolesław Prus
-"Lalka", Bolesław Prus
-"Lalka", Bolesław Prus
-"Lalka", Bolesław Prus
-"Lalka", Bolesław Prus
-"Król", Kamil Sipowicz
-"Hobbit, czyli tam i z powrotem", J.R.R. Tolkien
-"Hobbit, czyli tam i z powrotem", J.R.R. Tolkien
-"Hobbit, czyli tam i z powrotem", J.R.R. Tolkien
-"Hobbit, czyli tam i z powrotem", J.R.R. Tolkien
-"Hobbit, czyli tam i z powrotem", J.R.R. Tolkien
-"Złodziejka książek", Markus Zusak
-"Złodziejka książek", Markus Zusak
+Harry Potter i Kamień Filozoficzny, J.K. Rowling
+Wielki Gatsby, F. Scott Fitzgerald
+Zbrodnia i kara, Fiodor Dostojewski
+1984, George Orwell
+1984, George Orwell
+1984, George Orwell
+Przeminęło z wiatrem, Margaret Mitchell
+Duma i uprzedzenie, Jane Austen
+Duma i uprzedzenie, Jane Austen
+Sto lat samotności, Gabriel García Márquez
+Mistrz i Małgorzata, Michaił Bułhakow
+Władca Pierścieni: Drużyna Pierścienia, J.R.R. Tolkien
+Władca Pierścieni: Drużyna Pierścienia, J.R.R. Tolkien
+Władca Pierścieni: Drużyna Pierścienia, J.R.R. Tolkien
+Władca Pierścieni: Drużyna Pierścienia, J.R.R. Tolkien
+Władca Pierścieni: Drużyna Pierścienia, J.R.R. Tolkien
+Władca Pierścieni: Drużyna Pierścienia, J.R.R. Tolkien
+Folwark zwierzęcy, George Orwell
+Wielka Czwórka, Agatha Christie
+Wielka Czwórka, Agatha Christie
+Wielka Czwórka, Agatha Christie
+Wielka Czwórka, Agatha Christie
+Lalka, Bolesław Prus
+Lalka, Bolesław Prus
+Lalka, Bolesław Prus
+Lalka, Bolesław Prus
+Lalka, Bolesław Prus
+Król, Kamil Sipowicz
+Hobbit, czyli tam i z powrotem, J.R.R. Tolkien
+Hobbit, czyli tam i z powrotem, J.R.R. Tolkien
+Hobbit, czyli tam i z powrotem, J.R.R. Tolkien
+Hobbit, czyli tam i z powrotem, J.R.R. Tolkien
+Hobbit, czyli tam i z powrotem, J.R.R. Tolkien
+Złodziejka książek, Markus Zusak
+Złodziejka książek, Markus Zusak
