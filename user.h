@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "BCrypt.hpp"
 using namespace std;
 
 class User {
@@ -23,7 +22,7 @@ public:
 
     bool sprawdzDane(string wpisanyLogin, string wpisaneHaslo) const;
     void pokazDane() const;
-    void dodajDoHistorii(const string& tytul);
+    void dodajDoHistorii(string& tytul);
     void pokazHistorie() const;
 
     string getRola() const;
