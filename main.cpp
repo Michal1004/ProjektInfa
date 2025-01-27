@@ -9,9 +9,8 @@ using namespace std;
 int main() {
     Biblioteka biblioteka;
     vector<User> uzytkownicy;
-    string nazwaPlikuUzytkownikow = "uzytkownicy.txt";
-
-    User::wczytajUzytkownikowZPliku(uzytkownicy, nazwaPlikuUzytkownikow);
+    biblioteka.wczytajKsiazkiZPliku("ksiazki.txt");
+    User::wczytajUzytkownikowZPliku(uzytkownicy, "uzytkownicy.txt");
 
     string login, haslo, imie, nazwisko;
     string autor, tytul;
@@ -64,6 +63,7 @@ int main() {
                             nowaKsiazka.autor = autor;
                             nowaKsiazka.tytul = tytul;
                             biblioteka.dodajKsiazke(nowaKsiazka);
+                            biblioteka.zapiszKsiazkiDoPliku("ksiazki.txt");
                         } else if (zadanie == 3) {
                             cout << "Wylogowano pomyślnie" << endl;
                             break;
@@ -136,7 +136,7 @@ int main() {
             string rola = "user";
             uzytkownicy.push_back(User(imie, nazwisko, login, haslo, rola));
 
-            User::zapiszUzytkownikowDoPliku(uzytkownicy, nazwaPlikuUzytkownikow);
+            User::zapiszUzytkownikowDoPliku(uzytkownicy, "uzytkownicy.txt");
             cout << "Konto zostało utworzone!" << endl;
         } else {
             cout << "Nieprawidłowa opcja!" << endl;
