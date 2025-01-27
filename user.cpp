@@ -30,8 +30,9 @@ void User::setRola(string Rola) {
 }
 
 bool User::sprawdzDane(string wpisanyLogin, string wpisaneHaslo) const {
-    if(wpisanyLogin == login && wpisaneHaslo ==haslo)return true;
-    }
+    return wpisanyLogin == login && wpisaneHaslo == haslo;
+}
+
 
 
 void User::pokazDane() const {
@@ -89,7 +90,7 @@ void User::wczytajUzytkownikowZPliku(vector<User>& uzytkownicy, const string& na
 }
 
 void User::zapiszUzytkownikowDoPliku(const vector<User>& uzytkownicy, const string& nazwaPliku) {
-    ofstream plik(nazwaPliku, ios::app);
+    ofstream plik(nazwaPliku, ios::out);
     if (!plik.is_open()) {
         cout << "Nie udało się otworzyć pliku do zapisu." << endl;
         return;
